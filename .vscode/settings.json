@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "stack.h": "c",
+        "except.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "setjmp.h": "c",
+        "mmem.h": "c",
+        "unistd.h": "c",
+        "process.h": "c",
+        "_mingw.h": "c"
+    }
+}
