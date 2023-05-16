@@ -3,7 +3,7 @@
 extern void *Admem_alloc(long nbytes, const char *file, int line);
 extern void *Admem_calloc(long count, long nbytes, const char *file, int line);
 extern void Admem_free(void *ptr, const char *file, int line);
-extern void Admem_resize(void *ptr, long nbytes, const char *file, int line);
+extern void *Admem_resize(void *ptr, long nbytes, const char *file, int line);
 #define ADALLOC(nbytes) \
     Admem_alloc((nbytes), __FILE__, __LINE__)
 #define ADCALLOC(count, nbytes) \

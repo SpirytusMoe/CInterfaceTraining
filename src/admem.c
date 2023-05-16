@@ -75,7 +75,7 @@ void *Admem_alloc(long nbytes, const char *file, int line)
             p->size -= nbytes;
             ptr = (void *)((char *)p->ptr + p->size);
             if ((newp = ialloc(ptr, nbytes, file, line)) != NULL){
-                unsigned int h = hash(newp,htab);
+                unsigned int h = hash(ptr,htab);
                 newp->next =htab[h];
                 htab[h] = newp;
                 return ptr;
@@ -92,7 +92,7 @@ void *Admem_alloc(long nbytes, const char *file, int line)
         if (p == &freelist)
         {
             if( (ptr = malloc(nbytes+NALLOC)) == NULL ||
-            (newp = ialloc(ptr, nbytes+NALLOC, __FILE__, __LINE__) == NULL)
+            (newp = ialloc(ptr, nbytes+NALLOC, __FILE__, __LINE__)) == NULL
             ){
                 if(file==NULL){
                     RAISE(Mem_Failed);
@@ -122,8 +122,7 @@ void Admem_free(void *ptr, const char *file, int line)
     if (ptr)
     {
         inode *p;
-        if (((unsigned long)ptr) % (sizeof(union align)) != 0 || 
-        (p = ifind(ptr)) == NULL || p->nfree)
+        if ((p = ifind(ptr)) == NULL || p->nfree)
         {
             Except_raise(&Access_Failed, file, line);
         }
@@ -131,14 +130,13 @@ void Admem_free(void *ptr, const char *file, int line)
         freelist.nfree = p;
     }
 }
-void Admem_resize(void *ptr, long nbytes, const char *file, int line)
+void *Admem_resize(void *ptr, long nbytes, const char *file, int line)
 {
     void *newp;
     inode *p;
     assert(ptr);
     assert(nbytes>0);
-    if(((unsigned long)ptr)%(sizeof(union align))!=0 ||
-    (p = ifind(ptr)) == NULL || p->nfree
+    if((p = ifind(ptr)) == NULL || p->nfree
     ){
         Except_raise(&Access_Failed, file, line);
     }

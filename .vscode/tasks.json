@@ -8,6 +8,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "${workspaceFolder}\\src\\admem.c",
+                "${workspaceFolder}\\src\\except.c",
                 "-I",
                 "${workspaceFolder}\\include\\",
                 "-o",
