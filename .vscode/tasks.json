@@ -8,7 +8,6 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-                "${workspaceFolder}\\src\\mmem.c",
                 "-I",
                 "${workspaceFolder}\\include\\",
                 "-o",
