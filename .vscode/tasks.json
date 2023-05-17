@@ -10,6 +10,7 @@
                 "${file}",
                 "${workspaceFolder}\\src\\admem.c",
                 "${workspaceFolder}\\src\\except.c",
+                "${workspaceFolder}\\src\\stack.c",
                 "-I",
                 "${workspaceFolder}\\include\\",
                 "-o",

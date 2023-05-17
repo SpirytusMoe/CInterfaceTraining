@@ -1,30 +1,20 @@
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<admem.h>
-#include<except.h>
-union align
+#include <stdio.h>
+#include <stdlib.h>
+#include <admem.h>
+#include <except.h>
+#include <stack.h>
+
+int main()
 {
-    int i;
-    long l;
-    long *lp;
-    void *p;
-    void (*fp)(void);
-    float f;
-    double d;
-    long double ld;
-};
-int main(){
-    int i,cnt,size;
-    void *p;
-    cnt=0;
-    srand(3342);
-    for(i=0;i<100;i++){
-        size = rand()%3000;
-        p = ADALLOC(size);
-        if(((unsigned long)p)%(sizeof(union align))!=0)
-            cnt++;
-        
-    }
-    printf("cnt:%d\n",cnt);
+    stack_T s = Stack_new();
+    stack_T *p = &s;
+    int tmp = 1;
+    int *a = &tmp;
+    char *b = "hello";
+    Stack_push(s, a);
+    Stack_push(s, b);
+    printf("stack is empty? %d\n",Stack_empty(s));
+    printf("b=%d\na=%s\n",*((int*)Stack_pop(s)),(char*)Stack_pop(s));
+    Stack_free(p);
 }

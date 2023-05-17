@@ -9,7 +9,7 @@ struct T
     struct elem
     {
         void *x;
-        struct elem *prev
+        struct elem *prev;
     } *head;
 };
 
