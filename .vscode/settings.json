@@ -8,6 +8,7 @@
         "mmem.h": "c",
         "unistd.h": "c",
         "process.h": "c",
-        "_mingw.h": "c"
+        "_mingw.h": "c",
+        "admem.h": "c"
     }
 }
